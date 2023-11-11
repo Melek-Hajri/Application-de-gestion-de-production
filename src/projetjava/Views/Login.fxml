@@ -22,11 +22,9 @@
 <VBox layoutX="79.0" layoutY="235.0" spacing="23.0" />
   <PasswordField fx:id="passwordAdmin" layoutX="79.0" layoutY="313.0" onAction="" opacity="0.0" prefHeight="25.0" prefWidth="258.0" />
   <TextField fx:id="IDadmin" alignment="TOP_LEFT" layoutX="79.0" layoutY="254.0" opacity="0.01" prefHeight="25.0" prefWidth="258.0" />
-      <RadioButton layoutX="289.0" layoutY="167.0" mnemonicParsing="false" textFill="#fff9f9">
-         <toggleGroup>
-            <ToggleGroup fx:id="groupe1" />
-         </toggleGroup></RadioButton>
-      <RadioButton layoutX="289.0" layoutY="194.0" mnemonicParsing="false" textFill="#fff9f9" />
+      <RadioButton layoutX="289.0" layoutY="167.0" mnemonicParsing="false" textFill="#fff9f9" toggleGroup="$groupe1" />
+         
+      <RadioButton layoutX="289.0" layoutY="194.0" mnemonicParsing="false" textFill="#fff9f9" toggleGroup="$groupe1" />
       <Button layoutX="80.0" layoutY="383.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="258.0" text="Button" textAlignment="CENTER" />
            
         </children>
