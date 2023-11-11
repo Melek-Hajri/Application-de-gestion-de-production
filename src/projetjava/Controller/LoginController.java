@@ -52,7 +52,7 @@ public class LoginController {
 
     private boolean checkChefCredentials(String username, String password) {
         try (Connection connection = connecterDB.connecterDB();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Chef WHERE email = ? AND mdp = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Chef WHERE adresseEmail = ? AND mdp = ?")) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -66,7 +66,7 @@ public class LoginController {
 
     private boolean checkDirecteurCredentials(String username, String password) {
         try (Connection connection = connecterDB.connecterDB();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Directeur WHERE email = ? AND mdp = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Directeur WHERE adresseEmail = ? AND mdp = ?")) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

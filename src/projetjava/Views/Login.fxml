@@ -20,8 +20,8 @@
        <VBox layoutX="79.0" layoutY="235.0" spacing="23.0" />
 
 <VBox layoutX="79.0" layoutY="235.0" spacing="23.0" />
-  <PasswordField fx:id="passwordAdmin" layoutX="79.0" layoutY="313.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="vergver" />
-  <TextField fx:id="IDadmin" alignment="TOP_LEFT" layoutX="79.0" layoutY="254.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="jbk," />
+  <PasswordField fx:id="passwordAdmin" layoutX="79.0" layoutY="313.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: transparent;" />
+  <TextField fx:id="IDadmin" alignment="TOP_LEFT" layoutX="79.0" layoutY="254.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: transparent;" />
       <RadioButton fx:id="directeurRadioButton" layoutX="289.0" layoutY="167.0" mnemonicParsing="false" text="directeur" textFill="#fff9f9">
          <toggleGroup>
             <ToggleGroup fx:id="groupe1" />
