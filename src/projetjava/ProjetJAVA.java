@@ -4,6 +4,7 @@
  */
 package projetjava;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,20 +18,17 @@ import javafx.stage.Stage;
 public class ProjetJAVA extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjetJAVA.class.getResource("/projetjava/Views/Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),843,483);
+        stage.setTitle("Welcome page");
         stage.setScene(scene);
         stage.show();
-    }
+        
+       } 
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
     
 }
