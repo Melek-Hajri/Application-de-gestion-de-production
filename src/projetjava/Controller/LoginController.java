@@ -1,5 +1,6 @@
 package projetjava.Controller;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -10,6 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -42,6 +47,8 @@ public class LoginController {
             if (checkDirecteurCredentials(username, password)) {
                 // Directeur login successful, implement your logic here
                 System.out.println("Directeur login successful");
+                 
+                openDirecteurFXML();
             } else {
                 System.out.println("Invalid Directeur credentials");
             }
@@ -63,6 +70,29 @@ public class LoginController {
             return false;
         }
     }
+    private void openDirecteurFXML() {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/projetjava/Views/Directeur.fxml"));
+        Parent root = fxmlLoader.load();
+        
+        // Créer la scène
+        Scene scene = new Scene(root);
+        
+        // Créer la fenêtre du directeur
+        Stage stage = new Stage();
+        stage.setTitle("Directeur Dashboard"); // Titre de la fenêtre
+        stage.setScene(scene);
+        
+        // Afficher la fenêtre
+        stage.show();
+        
+        // Fermer la fenêtre de connexion (si nécessaire)
+        Stage loginStage = (Stage) IDadmin.getScene().getWindow();
+        loginStage.close();
+    } catch (IOException e) {
+       System.out.println("fail d ouverture d'interface ");
+    }
+}
 
     private boolean checkDirecteurCredentials(String username, String password) {
         try (Connection connection = connecterDB.connecterDB();
@@ -78,3 +108,5 @@ public class LoginController {
         }
     }
 }
+    
+
