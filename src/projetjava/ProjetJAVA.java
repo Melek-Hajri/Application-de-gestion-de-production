@@ -20,8 +20,8 @@ public class ProjetJAVA extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ProjetJAVA.class.getResource("/projetjava/Views/Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),843,483);
-        stage.setTitle("Welcome page");
+        Scene scene = new Scene(fxmlLoader.load(),700,450);
+        stage.setTitle("Page de connexion");
         stage.setScene(scene);
         stage.show();
         

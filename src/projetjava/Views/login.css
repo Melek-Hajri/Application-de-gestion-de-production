@@ -6,3 +6,11 @@
     -fx-background-image: url('@images/Login Page.png');
 
 }
+.custom-jfx-radio-button .radio{
+    -fx-stroke-width: 2px;
+    -fx-fill: transparent;
+}
+.custom-jfx-radio-button{
+    -jfx-selected-color: #ffa3be;
+    -jfx-unselected-color: #212121;
+}
