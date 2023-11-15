@@ -29,6 +29,7 @@ public class DirecteurController  {
     
       @FXML
     private void handleButtonClick(ActionEvent event) {
+        
         try {
             
             // Charger le fichier FXML de l'interface interf1directeur
