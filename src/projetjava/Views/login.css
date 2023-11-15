@@ -3,7 +3,7 @@
  */
 
 .mainFxmlClass {
-    -fx-background-image: url('@images/Login Page.png');
+    -fx-background-image: url('@images/LoginPage.png');
 
 }
 .custom-jfx-radio-button .radio{

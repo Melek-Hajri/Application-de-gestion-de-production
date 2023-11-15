@@ -21,6 +21,7 @@ public final class Chef extends Employe {
         this.prixParHeure = prixParHeure;
         this.mdp=mdp;
     }
+    
      public String get_mdp(){
         return mdp;
     }
