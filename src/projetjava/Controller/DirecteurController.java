@@ -44,7 +44,6 @@ public class DirecteurController  {
 
             // Définir la nouvelle scène sur la fenêtre principale
             primaryStage.setScene(scene);
-            System.out.println("erreur  directeur ");
 
         } catch (IOException e) {
             System.out.println("erreur en affichage interface directeur ");

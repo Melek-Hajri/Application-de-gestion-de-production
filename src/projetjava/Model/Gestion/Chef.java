@@ -21,11 +21,26 @@ public final class Chef extends Employe {
         this.prixParHeure = prixParHeure;
         this.mdp=mdp;
     }
+
+    @Override
+    public String toString() {
+return "Chef{" +
+            "nom='" + nom + '\'' +
+            ", prenom='" + prenom + '\'' +
+            ", id='" + id + '\'' +
+            ", adresseEmail='" + adresseEmail + '\'' +
+            ", numeroTelephone='" + numeroTelephone + '\'' +
+            ", age=" + age +
+            ", nbreHeures=" + nbreHeures +
+            ", prixParHeure=" + prixParHeure +
+            ", mdp='" + mdp + '\'' +
+            '}';    }
     
-     public String get_mdp(){
+     public String getMdp(){
         return mdp;
     }
-    public void set_mdp(String mdp){
+     
+    public void setMdp(String mdp){
         this.mdp=mdp;
     }
 

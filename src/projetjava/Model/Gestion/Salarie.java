@@ -79,6 +79,11 @@ public String getPrenom() {
                 };
         return salaireCalcul.calculSalaire();
                 }
+
+    @Override
+    public String toString() {
+        return "Salarie{" + "nom=" + nom + ", prenom=" + prenom + ", id=" + id + ", adresseEmail=" + adresseEmail + ", numeroTelephone=" + numeroTelephone + ", age=" + age + '}';
+    }
     
 
 }
