@@ -11,20 +11,27 @@
         <URL value="@interf1directeur.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableview" editable="true" fixedCellSize="5.0" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
+      <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
         <columns>
             <TableColumn fx:id="id" prefWidth="43.19998246431351" text="id" visible="true" />
-          <TableColumn id="nom" fx:id="nom" prefWidth="61.60000228881836" text="nom" visible="true"/>
-          <TableColumn id="prenom" fx:id="prenom" prefWidth="65.60000610351562" text="prenom" visible="true"/>
-            <TableColumn id="adresseEmail" fx:id="adresseEmail" prefWidth="138.40000915527344" text="adresseEmail" visible="true" />
-            <TableColumn id="numeroTel" fx:id="numeroTelephone" prefWidth="104.0" text="numeroTelephone" visible="true" />
-            <TableColumn fx:id="age" prefWidth="43.20001220703125" text="age" visible="true" />
-            <TableColumn fx:id="nbreHeures" prefWidth="79.20001220703125" text="nbreHeures" visible="true"/>
-            <TableColumn fx:id="prixParHeure" prefWidth="91.20001220703125" text="prixParHeure" visible="true" />
-            <TableColumn fx:id="mdp" prefWidth="97.60003662109375" text="mdp" visible="true" />
+          <TableColumn id="nom" fx:id="nom" prefWidth="61.60000228881836" text="nom" visible="true" />
+          <TableColumn id="prenom" fx:id="prenom" prefWidth="65.60000610351562" text="prenom" visible="true" />
+            <TableColumn fx:id="adresseEmail" prefWidth="102.66667175292969" text="adresseEmail" visible="true" />
+            <TableColumn fx:id="numeroTelephone" prefWidth="120.0" text="numeroTelephone" visible="true" />
+            <TableColumn fx:id="age" prefWidth="43.33331298828125" text="age" visible="true" />
+            <TableColumn fx:id="nbreHeures" prefWidth="71.33334350585938" text="nbreHeures" visible="true" />
+            <TableColumn fx:id="prixParHeure" prefWidth="121.33328247070312" text="prixParHeure" visible="true" />
+            <TableColumn fx:id="mdp" prefWidth="74.6666259765625" text="mdp" visible="true" />
+            <TableColumn fx:id="salaire" prefWidth="87.33331298828125" text="salaire" />
+            <TableColumn fx:id="Action" prefWidth="147.33331298828125" text="Action">
+               <columns>
+                  <TableColumn fx:id="Modifier" prefWidth="74.0" text="Modifier" />
+                  <TableColumn fx:id="Supprimer" prefWidth="72.0" text="Supprimer" />
+               </columns>
+            </TableColumn>
         </columns>
       </TableView>
       <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Button" />
-      <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" onAction="#initTableView" prefHeight="25.0" prefWidth="60.0" text="Button" />
+      <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Button" />
    </children>
 </AnchorPane>

@@ -37,8 +37,10 @@ public class ChefDAO {
                 String mdp = resultSet.getString("mdp");
 
                 Chef chef = new Chef(nom, prenom, id, adresseEmail, numeroTelephone, age, nbreHeures, prixParHeure, mdp);
+                // Calculate and set the salary
+                double calculatedSalaire = chef.calculSalaire();
+                chef.setSalaire(calculatedSalaire);
                 chefList.add(chef);
-                System.out.println(chefList.size());
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des chefs depuis la base de données: " + e.getMessage());

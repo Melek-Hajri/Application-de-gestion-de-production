@@ -63,6 +63,14 @@ public class INTERF1DirecteurController implements Initializable {
     @FXML
     private TableView<Chef> tableview;
     @FXML
+    private TableColumn<Chef,?> Action;
+     @FXML
+    private TableColumn<Chef,?>Modifier;
+
+    @FXML
+    private TableColumn<Chef,?> Supprimer;
+    @FXML
+    private TableColumn<Chef,Double>salaire;
    ObservableList<Chef> fetchChefDataFromDatabase() {
     ObservableList<Chef> chefList = FXCollections.observableArrayList();
 
@@ -99,7 +107,7 @@ public class INTERF1DirecteurController implements Initializable {
     nbreHeures.setCellValueFactory(new PropertyValueFactory<Chef,Integer>("nbreHeures"));
     prixParHeure.setCellValueFactory(new PropertyValueFactory<Chef,Double>("prixParHeure"));
     mdp.setCellValueFactory(new PropertyValueFactory<Chef,String>("mdp"));
-    System.out.println("hello"+tableview.getItems());
+    salaire.setCellValueFactory(new PropertyValueFactory<>("salaire"));
     
      
 

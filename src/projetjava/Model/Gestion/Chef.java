@@ -62,8 +62,11 @@ return "Chef{" +
     @Override
     public double calculSalaire() {
         // Utilisation d'une lambda pour calculer le salaire
-        calculsalaire salaireCalcul = () -> nbreHeures * prixParHeure;
+        calculsalaire salaireCalcul = () -> {
+            double calculatedSalaire = nbreHeures * prixParHeure;
+            setSalaire(calculatedSalaire); // Set the salary directly here
+            return calculatedSalaire;
+        };
         return salaireCalcul.calculSalaire();
-       
     }
 }

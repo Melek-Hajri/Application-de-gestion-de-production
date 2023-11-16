@@ -12,10 +12,18 @@ import java.util.*;
 import java.lang.String;
 public class Employe extends Salarie {
      List<String> taches;
+     private double salaire;
 
     public Employe(String nom,String prenom, String id, String adresseEmail, String numeroTelephone,double age) {
         super(nom,prenom,id,adresseEmail,numeroTelephone,age);
         this.taches = new ArrayList<>();
+    }
+    public void setSalaire(double salaire) {
+        this.salaire = salaire;
+    }
+
+    public double getSalaire() {
+        return salaire;
     }
 
     public List<String> getTaches() {
