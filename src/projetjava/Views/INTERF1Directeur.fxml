@@ -24,10 +24,7 @@
             <TableColumn fx:id="mdp" prefWidth="74.6666259765625" text="mdp" visible="true" />
             <TableColumn fx:id="salaire" prefWidth="87.33331298828125" text="salaire" />
             <TableColumn fx:id="Action" prefWidth="147.33331298828125" text="Action">
-               <columns>
-                  <TableColumn fx:id="Modifier" prefWidth="74.0" text="Modifier" />
-                  <TableColumn fx:id="Supprimer" prefWidth="72.0" text="Supprimer" />
-               </columns>
+               
             </TableColumn>
         </columns>
       </TableView>
