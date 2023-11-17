@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
     <stylesheets>
-        <URL value="@interf2directeurgop.css"/>
+        <URL value="@interf2directeurgop.css" />
     </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="944.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@interf1directeur.css" />
+          </stylesheets>
+         <children>
+            <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
+              <columns>
+                  <TableColumn fx:id="id" prefWidth="43.19998246431351" text="id" visible="true" />
+                <TableColumn id="nom" fx:id="nom" prefWidth="61.60000228881836" text="nom" visible="true" />
+                <TableColumn id="prenom" fx:id="prenom" prefWidth="65.60000610351562" text="prenom" visible="true" />
+                  <TableColumn fx:id="adresseEmail" prefWidth="102.66667175292969" text="adresseEmail" visible="true" />
+                  <TableColumn fx:id="numeroTelephone" prefWidth="120.0" text="numeroTelephone" visible="true" />
+                  <TableColumn fx:id="age" prefWidth="43.33331298828125" text="age" visible="true" />
+                  <TableColumn fx:id="nbreHeures" prefWidth="71.33334350585938" text="nbreHeures" visible="true" />
+                  <TableColumn fx:id="prixParHeure" prefWidth="121.33328247070312" text="prixParHeure" visible="true" />
+                  <TableColumn fx:id="mdp" prefWidth="74.6666259765625" text="mdp" visible="true" />
+                  <TableColumn fx:id="salaire" prefWidth="87.33331298828125" text="salaire" />
+                  <TableColumn fx:id="Action" prefWidth="147.33331298828125" text="Action">
+               
+            </TableColumn>
+              </columns>
+            </TableView>
+            <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
