@@ -5,9 +5,6 @@
 package projetjava.Controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +23,11 @@ public class DirecteurController  {
     /**
      * Initializes the controller class.
      */
+    private int dirID;
+    
+    public void setDirID(int DirID){
+        this.dirID = DirID;
+    }
     
       @FXML
     private void handleButtonClick(ActionEvent event) {
@@ -35,7 +37,8 @@ public class DirecteurController  {
             // Charger le fichier FXML de l'interface interf1directeur
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/INTERF1Directeur.fxml"));
             Parent root = loader.load();
-
+            INTERF1DirecteurController directeurController = loader.getController();
+            directeurController.setDirID(dirID);
             // Créer une nouvelle scène
             Scene scene = new Scene(root);
 
@@ -55,7 +58,8 @@ public class DirecteurController  {
             // Load the FXML file of the interface for managing operators
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/Interf2DirecteurGop.fxml"));
             Parent root = loader.load();
-
+            //Interf2DirecteurGopController directeurController = loader.getController();
+            //directeurController.setDirID(dirID);
             // Create a new scene
             Scene scene = new Scene(root);
 

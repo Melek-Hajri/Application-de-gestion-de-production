@@ -18,7 +18,7 @@ import projetjava.Model.Gestion.Chef;
 
 public class ChefDAO {
 
-     public static List<Chef> getAllChefs() throws SQLException {
+    public static List<Chef> getAllChefs() throws SQLException {
         List<Chef> chefList = new ArrayList<>();
 
         try (Connection connection = connecterDB.connecterDB();
@@ -50,7 +50,7 @@ public class ChefDAO {
         return chefList;
     }
      //**********to connect to table chef and delete chef by id*****************
-      public static void deleteChefById(String chefId) throws SQLException {
+    public static void deleteChefById(String chefId) throws SQLException {
         String deleteQuery = "DELETE FROM Chef WHERE id = ?";
 
         try (Connection connection = connecterDB.connecterDB();
@@ -72,5 +72,38 @@ public class ChefDAO {
         }
     }
     // Ajoutez d'autres méthodes pour les opérations CRUD (Create, Read, Update, Delete) si nécessaire
-    }
+    public static void saveChef(Chef chef, int dirID) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            connection = connecterDB.connecterDB();
+            preparedStatement = connection.prepareStatement("INSERT INTO Chef VALUES(?,?,?,?,?,?,?,?,?,?,?);");
+            
+            preparedStatement.setString(1, chef.getId());
+            preparedStatement.setString(2, chef.getNom());
+            preparedStatement.setString(3, chef.getPrenom());
+            preparedStatement.setString(4, chef.getAdresseEmail());
+            preparedStatement.setString(5, chef.getNumeroTelephone());
+            preparedStatement.setDouble(6, chef.getAge());
+            preparedStatement.setDouble(7, chef.getNbreHeures());
+            preparedStatement.setDouble(8, chef.getPrixParHeure());
+            preparedStatement.setDouble(9, chef.getSalaire());
+            preparedStatement.setString(10, chef.getMdp());
+            preparedStatement.setInt(11, dirID);
+            
+            // Execute query
+            preparedStatement.executeUpdate();
+        } finally {
+            // Close connections
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        
+    }  
+}
 

@@ -2,7 +2,6 @@ package projetjava.Controller;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -32,7 +31,7 @@ public class LoginController {
 
     
     @FXML
-    public void login() {
+    public void login() throws SQLException {
         String username = IDadmin.getText();
         String password = passwordAdmin.getText();
 
@@ -47,8 +46,15 @@ public class LoginController {
             if (checkDirecteurCredentials(username, password)) {
                 // Directeur login successful, implement your logic here
                 System.out.println("Directeur login successful");
-                 
-                openDirecteurFXML();
+                Connection connection = connecterDB.connecterDB();
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM directeur WHERE adresseEmail = 'john.doe@example.com' AND mdp = 'password123'");
+                //preparedStatement.setString(1, username);
+                //preparedStatement.setString(2, password);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                int DirID = resultSet.getInt("id");
+                openDirecteurFXML(DirID);
+                }
             } else {
                 System.out.println("Invalid Directeur credentials");
             }
@@ -70,11 +76,13 @@ public class LoginController {
             return false;
         }
     }
-    private void openDirecteurFXML() {
+    private void openDirecteurFXML(int DirID) {
     try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/projetjava/Views/Directeur.fxml"));
         Parent root = fxmlLoader.load();
-        
+        DirecteurController directeurController = fxmlLoader.getController();
+
+        directeurController.setDirID(DirID);
         // Créer la scène
         Scene scene = new Scene(root);
         

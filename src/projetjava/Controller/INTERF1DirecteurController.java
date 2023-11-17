@@ -34,6 +34,7 @@ import projetjava.Model.Gestion.Chef;
  * @author admin
  */
 public class INTERF1DirecteurController implements Initializable {
+    private int dirID;
     @FXML
     private TableColumn<Chef, Integer> id;
     @FXML
@@ -57,13 +58,11 @@ public class INTERF1DirecteurController implements Initializable {
     @FXML
     private TableColumn<Chef,Chef> Action;
     @FXML
-    private TableColumn<Chef,?>Modifier;
-    @FXML
-    private TableColumn<Chef,?> Supprimer;
-    @FXML
     private TableColumn<Chef,Double>salaire;
     
-    
+    public void setDirID(int DirID){
+        this.dirID = DirID;
+    }
     ObservableList<Chef> fetchChefDataFromDatabase() {
         ObservableList<Chef> chefList = FXCollections.observableArrayList();
         try {
@@ -151,53 +150,72 @@ public class INTERF1DirecteurController implements Initializable {
     }
     //************UPDATE BUTTON****************
     private void navigateToUpdateScene(Chef chef) {
-    try {
-        // Load the FXML file for the update scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateChef.fxml"));
-        Parent root = loader.load();
+        try {
+            // Load the FXML file for the update scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateChef.fxml"));
+            Parent root = loader.load();
 
-        // Get the controller associated with the FXML file
-        UpdateChefController updateController = loader.getController();
+            // Get the controller associated with the FXML file
+            UpdateChefController updateController = loader.getController();
 
-        // Pass the Chef data to the UpdateController
-        updateController.setChef(chef);
-        updateController.setUpdateCallback(this::handleChefUpdate);
-        // Create a new scene and set it on the stage
-        Scene updateScene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(updateScene);
-        stage.setTitle("Update Chef");
-        stage.show();
-    } catch (IOException e) {
-        // Handle the exception appropriately
-        System.out.println("erreur en navigating to the new scene");     
-         
+            // Pass the Chef data to the UpdateController
+            updateController.setChef(chef);
+            updateController.setUpdateCallback(this::handleChefUpdate);
+            // Create a new scene and set it on the stage
+            Scene updateScene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(updateScene);
+            stage.setTitle("Update Chef");
+            stage.show();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            System.out.println("erreur en navigating to the new scene");     
+
+        }
     }
-}
     private void handleChefUpdate(Chef updatedChef) {
-    // Implement the logic to update the row in your data structure
-    // Refresh the table data
-    refreshTableData();
-}
- private void refreshTableData() {
+        // Implement the logic to update the row in your data structure
+        // Refresh the table data
+        refreshTableData();
+    }
+    public void refreshTableData() {
         ObservableList<Chef> chefList = fetchChefDataFromDatabase();
         tableview.setItems(chefList);
         tableview.refresh();
     }
-//*********************DELETE BUTTON***************************
-private boolean showDeleteConfirmationDialog(Chef chef) {
-    // Implement the logic to show a confirmation dialog before deleting
-    // For example, you can use JavaFX Alert
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Delete Confirmation");
-    alert.setHeaderText("Delete Chef");
-    alert.setContentText("Are you sure you want to delete chef: " + chef.getNom() + "?");
+    //*********************DELETE BUTTON***************************
+    private boolean showDeleteConfirmationDialog(Chef chef) {
+        // Implement the logic to show a confirmation dialog before deleting
+        // For example, you can use JavaFX Alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Confirmation");
+        alert.setHeaderText("Delete Chef");
+        alert.setContentText("Are you sure you want to delete chef: " + chef.getNom() + "?");
 
-    Optional<ButtonType> result = alert.showAndWait();
-    return result.orElse(ButtonType.CANCEL) == ButtonType.OK;
-}
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.orElse(ButtonType.CANCEL) == ButtonType.OK;
+    }
+    @FXML
+    private void navigateToAjouterChefScene() {
+        try {
+            // Load the FXML file for the update scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/AjoutChef.fxml"));
+            Parent root = loader.load();
+            AjoutChefController directeurController = loader.getController();
+            directeurController.setDirID(dirID);
+            directeurController.setInterfController(this);
 
-    
+            Scene updateScene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(updateScene);
+            stage.setTitle("Ajouter Chef");
+            stage.show();
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            System.out.println("erreur en navigating to the new scene");     
+
+        }
+    }
 
 }
 
