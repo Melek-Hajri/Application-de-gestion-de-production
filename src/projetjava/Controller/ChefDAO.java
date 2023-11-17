@@ -49,6 +49,28 @@ public class ChefDAO {
 
         return chefList;
     }
+     //**********to connect to table chef and delete chef by id*****************
+      public static void deleteChefById(String chefId) throws SQLException {
+        String deleteQuery = "DELETE FROM Chef WHERE id = ?";
+
+        try (Connection connection = connecterDB.connecterDB();
+             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+            preparedStatement.setString(1, chefId);
+
+            // Execute the delete query
+            int rowsDeleted = preparedStatement.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Chef with ID " + chefId + " deleted successfully.");
+            } else {
+                System.out.println("No chef found with ID " + chefId + ". Deletion failed.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error deleting chef: " + e.getMessage());
+            throw e; // Re-throw the exception to signal the error
+        }
+    }
     // Ajoutez d'autres méthodes pour les opérations CRUD (Create, Read, Update, Delete) si nécessaire
     }
 

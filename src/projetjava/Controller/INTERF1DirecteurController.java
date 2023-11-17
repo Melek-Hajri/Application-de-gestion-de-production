@@ -114,14 +114,29 @@ public class INTERF1DirecteurController implements Initializable {
                     System.out.println("Update chef: " + chef);
                 });
 
-                deleteButton.setOnAction(event -> {
-                    Chef chef = getTableView().getItems().get(getIndex());
-                    // Handle delete action here
-                    // Implement the logic to delete the row corresponding to 'chef'
-                     // dataSource.deleteChef(chef);
-                    System.out.println("Delete chef: " + chef);
-                });
-            }
+                 deleteButton.setOnAction(event -> {
+                Chef chef = getTableView().getItems().get(getIndex());
+
+                // Show a confirmation dialog before deleting
+                boolean confirmed = showDeleteConfirmationDialog(chef);
+
+                if (confirmed) {
+                    try {
+                        // Assuming ChefDAO has a method to delete the chef by ID
+                        ChefDAO.deleteChefById(chef.getId());
+
+                        // Optional: Show a success message
+                        System.out.println("Chef deleted successfully.");
+
+                        // Refresh the table data after deletion
+                        refreshTableData();
+                    } catch (SQLException e) {
+                        // Handle the exception appropriately
+                        System.out.println("Error deleting chef: " + e.getMessage());
+                    }
+                }
+            });
+                        }
 
             @Override
             protected void updateItem(Chef item, boolean empty) {
@@ -134,6 +149,7 @@ public class INTERF1DirecteurController implements Initializable {
             }
         });
     }
+    //************UPDATE BUTTON****************
     private void navigateToUpdateScene(Chef chef) {
     try {
         // Load the FXML file for the update scene
@@ -168,7 +184,7 @@ public class INTERF1DirecteurController implements Initializable {
         tableview.setItems(chefList);
         tableview.refresh();
     }
-
+//*********************DELETE BUTTON***************************
 private boolean showDeleteConfirmationDialog(Chef chef) {
     // Implement the logic to show a confirmation dialog before deleting
     // For example, you can use JavaFX Alert
