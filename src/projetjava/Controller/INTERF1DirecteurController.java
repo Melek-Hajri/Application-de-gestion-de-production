@@ -137,11 +137,11 @@ public class INTERF1DirecteurController implements Initializable {
     private void navigateToUpdateScene(Chef chef) {
     try {
         // Load the FXML file for the update scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateChef.fxml"));
         Parent root = loader.load();
 
         // Get the controller associated with the FXML file
-        UpdateSceneController updateController = loader.getController();
+        UpdateChefController updateController = loader.getController();
 
         // Pass the Chef data to the UpdateController
         updateController.setChef(chef);

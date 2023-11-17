@@ -4,7 +4,7 @@
  */
 package projetjava.Controller;
 
-import com.mysql.jdbc.PreparedStatement;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import projetjava.Model.Gestion.Chef;
-import projetjava.Controller.INTERF1DirecteurController;
 import java.sql.SQLException;
 import java.util.function.Consumer;
 import javafx.scene.control.Button;
@@ -22,7 +21,7 @@ import javafx.scene.control.Button;
  *
  * @author admin
  */
-public class UpdateSceneController implements Initializable {
+public class UpdateChefController implements Initializable {
 
     /**
      * Initializes the controller class.
