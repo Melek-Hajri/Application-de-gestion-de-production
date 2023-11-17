@@ -195,6 +195,7 @@ public class INTERF1DirecteurController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         return result.orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
+    //************ajouter button*************
     @FXML
     private void navigateToAjouterChefScene() {
         try {

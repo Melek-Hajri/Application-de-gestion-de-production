@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
     <stylesheets>
         <URL value="@interf2directeurgop.css" />
     </stylesheets>
@@ -26,9 +26,8 @@
                   <TableColumn fx:id="age" prefWidth="43.33331298828125" text="age" visible="true" />
                   <TableColumn fx:id="nbreHeures" prefWidth="71.33334350585938" text="nbreHeures" visible="true" />
                   <TableColumn fx:id="prixParHeure" prefWidth="121.33328247070312" text="prixParHeure" visible="true" />
-                  <TableColumn fx:id="mdp" prefWidth="74.6666259765625" text="mdp" visible="true" />
                   <TableColumn fx:id="salaire" prefWidth="87.33331298828125" text="salaire" />
-                  <TableColumn fx:id="Action" prefWidth="147.33331298828125" text="Action">
+                  <TableColumn fx:id="Action" prefWidth="222.00006103515625" text="Action">
                
             </TableColumn>
               </columns>
