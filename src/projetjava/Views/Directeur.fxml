@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <Button layoutX="323.0" layoutY="105.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="209.0" text="Button1"  onAction="#handleButtonClick" />
-      <Button layoutX="319.0" layoutY="236.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="209.0" text="Button2" />
+      <Button layoutX="319.0" layoutY="236.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="209.0" text="Button2" onAction="#handleGererOperateursButtonClick"/>
       </children>
    <opaqueInsets>
       <Insets />

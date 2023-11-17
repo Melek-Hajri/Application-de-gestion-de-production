@@ -49,5 +49,26 @@ public class DirecteurController  {
             System.out.println("erreur en affichage interface directeur ");
         }
     }
+     @FXML
+    private void handleGererOperateursButtonClick(ActionEvent event) {
+        try {
+            // Load the FXML file of the interface for managing operators
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/Interf2DirecteurGop.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the primary stage
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene on the primary stage
+            primaryStage.setScene(scene);
+        } catch (IOException e) {
+            // Handle the exception appropriately
+            System.out.println("Error displaying the Manage Operators interface: " + e.getMessage());
+        }
+    }
+
     
 }
