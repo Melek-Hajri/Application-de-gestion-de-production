@@ -12,9 +12,11 @@ import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -215,6 +217,22 @@ public class INTERF1DirecteurController implements Initializable {
             // Handle the exception appropriately
             System.out.println("erreur en navigating to the new scene");     
 
+        }
+    }
+    //***********bouton back***************
+    public void navigateToPrecedenteDircteurScene(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/Directeur.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the current window if needed
+             ((Node)(event.getSource())).getScene().getWindow().hide();
+        } catch (Exception e) {
+            System.out.println("erreur en back");            // Handle exception appropriately (e.g., show an error message)
         }
     }
 

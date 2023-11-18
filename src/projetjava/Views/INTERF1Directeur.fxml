@@ -29,6 +29,6 @@
         </columns>
       </TableView>
       <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Ajouter" onAction="#navigateToAjouterChefScene" />
-      <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" onAction="#navigateToPrecedenteDircteurScene" />
    </children>
 </AnchorPane>
