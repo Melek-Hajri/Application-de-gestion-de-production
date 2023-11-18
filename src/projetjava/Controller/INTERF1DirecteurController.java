@@ -176,7 +176,6 @@ public class INTERF1DirecteurController implements Initializable {
         }
     }
     private void handleChefUpdate(Chef updatedChef) {
-        // Implement the logic to update the row in your data structure
         // Refresh the table data
         refreshTableData();
     }

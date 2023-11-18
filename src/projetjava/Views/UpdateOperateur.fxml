@@ -28,6 +28,6 @@
      <Label layoutX="340.0" layoutY="99.0" text="prixParHeure" />
      <TextField fx:id="nbreHeures" layoutX="424.0" layoutY="39.0" />
      <Label layoutX="340.0" layoutY="43.0" text="nbreHeures" />
-    <Button fx:id="Sauvegarder" layoutX="433.0" layoutY="300.0" mnemonicParsing="false" text="Sauvegarder"  />
+    <Button fx:id="Sauvegarder" layoutX="433.0" layoutY="300.0" mnemonicParsing="false" text="Sauvegarder" onAction="#handleUpdateButton" />
    </children>
 </AnchorPane>

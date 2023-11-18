@@ -134,15 +134,20 @@ public class Interf2DirecteurGopController implements Initializable {
             private final Button deleteButton = new Button("Delete");
 
             {
+                //********UPDATE DECLARATION BUTTON***********
                 updateButton.setOnAction(event -> {
                     Operateur operateur = getTableView().getItems().get(getIndex());
-                    // Handle update action here
-                    // Implement the logic to update the row corresponding to 'operateur'
-                    // Here is a simple example assuming you have a method navigateToUpdateScene
-                  //thennnnnnnn  navigateToUpdateScene(operateur);
+                    try {
+                        // Handle update action here
+                        // Implement the logic to update the row corresponding to 'operateur'
+                        // Here is a simple example assuming you have a method navigateToUpdateScene
+                        navigateToUpdateScene(operateur);
+                    } catch (NbreHeuresNegatifException ex) {
+                        Logger.getLogger(Interf2DirecteurGopController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     System.out.println("Update operateur: " + operateur);
                 });
-
+                 //*****DELETE DECLARATION BUTTON****************
                 deleteButton.setOnAction(event -> {
                     Operateur operateur = getTableView().getItems().get(getIndex());
 
@@ -180,8 +185,8 @@ public class Interf2DirecteurGopController implements Initializable {
             }
         });
     }
-/*
-    private void navigateToUpdateScene(Operateur operateur) {
+//********update button*******************
+        private void navigateToUpdateScene(Operateur operateur) throws NbreHeuresNegatifException {
         try {
             // Load the FXML file for the update scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateOperateur.fxml"));
@@ -193,6 +198,7 @@ public class Interf2DirecteurGopController implements Initializable {
             // Pass the Operateur data to the UpdateController
             updateController.setOperateur(operateur);
             updateController.setUpdateCallback(this::handleOperateurUpdate);
+
             // Create a new scene and set it on the stage
             Scene updateScene = new Scene(root);
             Stage stage = new Stage();
@@ -203,20 +209,24 @@ public class Interf2DirecteurGopController implements Initializable {
             // Handle the exception appropriately
             System.out.println("Erreur en navigating to the new scene");
         }
-    }
-*/
-    private void handleOperateurUpdate(Operateur updatedOperateur) throws NbreHeuresNegatifException {
-        // Implement the logic to update the row in your data structure
+}
+
+       private void handleOperateurUpdate(Operateur updatedOperateur) {
+    try {
         // Refresh the table data
         refreshTableData();
+    } catch (NbreHeuresNegatifException ex) {
+        // Handle the exception appropriately, e.g., show an alert or log the error
+        System.out.println("Erreur during update operator: " + ex.getMessage());
     }
+}
 
     public void refreshTableData() throws NbreHeuresNegatifException {
         ObservableList<Operateur> operateurList = fetchOperateurDataFromDatabase();
         tableview.setItems(operateurList);
         tableview.refresh();
     }
-
+//***************button delete**************
     private boolean showDeleteConfirmationDialog(Operateur operateur) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Confirmation");
@@ -226,8 +236,8 @@ public class Interf2DirecteurGopController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         return result.orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
-
-    /*@FXML
+//*****************bouton ajouter***********
+    @FXML
     private void navigateToAjouterOperateurScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/AjoutOperateur.fxml"));
@@ -244,8 +254,9 @@ public class Interf2DirecteurGopController implements Initializable {
         } catch (IOException e) {
             System.out.println("Erreur en navigating to the new scene");
         }
-    }*/
-     //***********bouton back***************
+    }
+    
+         //***********bouton back***************
     public void navigateToPrecedenteDircteurScene(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/Directeur.fxml"));

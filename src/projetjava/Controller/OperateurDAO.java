@@ -57,36 +57,40 @@ public class OperateurDAO {
     // Similar to deleteChefById, you can create a deleteOperateurById method here
 
     // Ajoutez d'autres méthodes pour les opérations CRUD (Create, Read, Update, Delete) si nécessaire
-    public static void saveOperateur(Operateur operateur) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+   public static void saveOperateur(Operateur operateur, int dirID) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        try {
-            connection = connecterDB.connecterDB();
-            preparedStatement = connection.prepareStatement("INSERT INTO Operateur VALUES(?,?,?,?,?,?,?,?,?);");
+    try {
+        connection = connecterDB.connecterDB();
+        preparedStatement = connection.prepareStatement(
+            "INSERT INTO Operateur (Id, Nom, Prenom, AdresseEmail, NumeroTelephone, Age, NbreHeures, PrixParHeure, Salaire, DirID) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        );
 
-            preparedStatement.setString(1, operateur.getId());
-            preparedStatement.setString(2, operateur.getNom());
-            preparedStatement.setString(3, operateur.getPrenom());
-            preparedStatement.setString(4, operateur.getAdresseEmail());
-            preparedStatement.setString(5, operateur.getNumeroTelephone());
-            preparedStatement.setDouble(6, operateur.getAge());
-            preparedStatement.setDouble(7, operateur.getNbreHeures());
-            preparedStatement.setDouble(8, operateur.getPrixParHeure());
-            preparedStatement.setDouble(9, operateur.getSalaire());
+        preparedStatement.setString(1, operateur.getId());
+        preparedStatement.setString(2, operateur.getNom());
+        preparedStatement.setString(3, operateur.getPrenom());
+        preparedStatement.setString(4, operateur.getAdresseEmail());
+        preparedStatement.setString(5, operateur.getNumeroTelephone());
+        preparedStatement.setDouble(6, operateur.getAge());
+        preparedStatement.setDouble(7, operateur.getNbreHeures());
+        preparedStatement.setDouble(8, operateur.getPrixParHeure());
+        preparedStatement.setDouble(9, operateur.getSalaire());
+        preparedStatement.setInt(10, dirID);
 
-            // Execute query
-            preparedStatement.executeUpdate();
-        } finally {
-            // Close connections
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
+        // Execute query
+        preparedStatement.executeUpdate();
+    } finally {
+        // Close connections
+        if (preparedStatement != null) {
+            preparedStatement.close();
+        }
+        if (connection != null) {
+            connection.close();
         }
     }
+   }
     //****************delete operator by id********************
     public static void deleteOperateurById(String operateurId) throws SQLException {
         String deleteQuery = "DELETE FROM Operateur WHERE id = ?";
