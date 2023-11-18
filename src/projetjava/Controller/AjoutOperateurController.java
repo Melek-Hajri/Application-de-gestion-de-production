@@ -68,17 +68,15 @@ public class AjoutOperateurController implements Initializable {
     }
 
    @FXML
-public void handleAddButton() throws NbreHeuresNegatifException {
+    public void handleAddButton() throws NbreHeuresNegatifException {
     // Get the updated values from the TextFields
     String Nom = nom.getText();
     String Prenom = prenom.getText();
-    
     int NbreHeures = Integer.parseInt(nbreHeures.getText());
     String AdresseEmail = adresseEmail.getText();
     String Id = id.getText();
     String NumeroTelephone = numeroTelephone.getText();
     double PrixParHeure = Double.parseDouble(prixParHeure.getText());
-    
     String ageText = age.getText();
     if (!ageText.isEmpty()) {
         System.out.println("saisi age");
