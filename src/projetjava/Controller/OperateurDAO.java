@@ -64,7 +64,7 @@ public class OperateurDAO {
     try {
         connection = connecterDB.connecterDB();
         preparedStatement = connection.prepareStatement(
-            "INSERT INTO Operateur (Id, Nom, Prenom, AdresseEmail, NumeroTelephone, Age, NbreHeures, PrixParHeure, Salaire, DirID) " +
+            "INSERT INTO Operateur (Id, Nom, Prenom, AdresseEmail, NumeroTelephone, Age, NbreHeures, PrixParHeure, Salaire, directeur_id) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         );
 

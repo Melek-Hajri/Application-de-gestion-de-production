@@ -39,6 +39,7 @@ public class LoginController {
             if (checkChefCredentials(username, password)) {
                 // Chef login successful, implement your logic here
                 System.out.println("Chef login successful");
+                openChefFXML();
             } else {
                 System.out.println("Invalid Chef credentials");
             }
@@ -115,6 +116,29 @@ public class LoginController {
             return false;
         }
     }
+    private void openChefFXML() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/projetjava/Views/Chef.fxml"));
+            Parent root = fxmlLoader.load();
+            // Créer la scène
+            Scene scene = new Scene(root);
+
+            // Créer la fenêtre du chef
+            Stage stage = new Stage();
+            stage.setTitle("Chef Dashboard"); // Titre de la fenêtre
+            stage.setScene(scene);
+
+            // Afficher la fenêtre
+            stage.show();
+
+            // Fermer la fenêtre de connexion (si nécessaire)
+            Stage loginStage = (Stage) IDadmin.getScene().getWindow();
+            loginStage.close();
+        } catch (IOException e) {
+           System.out.println("fail d ouverture d'interface ");
+        }
+    }
 }
+
     
 

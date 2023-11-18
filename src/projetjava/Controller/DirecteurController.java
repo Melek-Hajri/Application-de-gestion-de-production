@@ -58,8 +58,8 @@ public class DirecteurController  {
             // Load the FXML file of the interface for managing operators
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/Interf2DirecteurGop.fxml"));
             Parent root = loader.load();
-            //Interf2DirecteurGopController directeurController = loader.getController();
-            //directeurController.setDirID(dirID);
+            Interf2DirecteurGopController directeurController = loader.getController();
+            directeurController.setDirID(dirID);
             // Create a new scene
             Scene scene = new Scene(root);
 
