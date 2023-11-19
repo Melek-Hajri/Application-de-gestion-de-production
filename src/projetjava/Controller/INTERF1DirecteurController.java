@@ -111,33 +111,33 @@ public class INTERF1DirecteurController implements Initializable {
                     // Handle update action here
                     // Implement the logic to update the row corresponding to 'chef'
                     // Here is a simple example assuming you have a method navigateToUpdateScene
-                navigateToUpdateScene(chef);
+                    navigateToUpdateScene(chef);
                     System.out.println("Update chef: " + chef);
                 });
 
-                 deleteButton.setOnAction(event -> {
-                Chef chef = getTableView().getItems().get(getIndex());
+                deleteButton.setOnAction(event -> {
+                    Chef chef = getTableView().getItems().get(getIndex());
 
-                // Show a confirmation dialog before deleting
-                boolean confirmed = showDeleteConfirmationDialog(chef);
+                    // Show a confirmation dialog before deleting
+                    boolean confirmed = showDeleteConfirmationDialog(chef);
 
-                if (confirmed) {
-                    try {
-                        // Assuming ChefDAO has a method to delete the chef by ID
-                        ChefDAO.deleteChefById(chef.getId());
+                    if (confirmed) {
+                        try {
+                            // Assuming ChefDAO has a method to delete the chef by ID
+                            ChefDAO.deleteChefById(chef.getId());
 
-                        // Optional: Show a success message
-                        System.out.println("Chef deleted successfully.");
+                            // Optional: Show a success message
+                            System.out.println("Chef deleted successfully.");
 
-                        // Refresh the table data after deletion
-                        refreshTableData();
-                    } catch (SQLException e) {
-                        // Handle the exception appropriately
-                        System.out.println("Error deleting chef: " + e.getMessage());
-                    }
-                }
-            });
+                            // Refresh the table data after deletion
+                            refreshTableData();
+                        } catch (SQLException e) {
+                            // Handle the exception appropriately
+                            System.out.println("Error deleting chef: " + e.getMessage());
                         }
+                    }
+                });
+            }
 
             @Override
             protected void updateItem(Chef item, boolean empty) {

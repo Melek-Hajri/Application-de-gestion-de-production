@@ -64,5 +64,10 @@ public class Directeur extends Salarie {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "subordonnes=" + subordonnes + ", prime=" + prime + ", employes=" + employes + ", mdp=" + mdp + '}';
+    }
+    
 }
 

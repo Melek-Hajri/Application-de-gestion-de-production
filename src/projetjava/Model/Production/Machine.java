@@ -9,16 +9,26 @@ package projetjava.Model.Production;
  * @author hajri
  */
 public class Machine {
+    private int id;
     private String nom; 
     private String type; 
     private boolean enMaintenance;
 
-    public Machine(String nom, String type, int capacite) {
+    public Machine(int id, String nom, String type, boolean enMaintenance) {
+        this.id = id;
         this.nom = nom;
         this.type = type;
-        this.enMaintenance = false;
+        this.enMaintenance = enMaintenance;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getNom() {
         return nom;
@@ -42,5 +52,10 @@ public class Machine {
 
     public void setEnMaintenance(boolean enMaintenance) {
         this.enMaintenance = enMaintenance;
+    }
+
+    @Override
+    public String toString() {
+        return "Machine{" + "id=" + id + ", nom=" + nom + ", type=" + type + ", enMaintenance=" + enMaintenance + '}';
     }
 }

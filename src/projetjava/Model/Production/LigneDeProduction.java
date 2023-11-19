@@ -4,8 +4,6 @@
  */
 package projetjava.Model.Production;
 
-import projetjava.Model.Production.Exceptions.InvalidDeleteException;
-import projetjava.Model.Gestion.Operateur;
 import java.util.ArrayList;
 import projetjava.Model.Gestion.Operateur;
 import projetjava.Model.Production.Exceptions.InvalidDeleteException;
@@ -15,6 +13,7 @@ import projetjava.Model.Production.Exceptions.InvalidDeleteException;
  * @author hajri
  */
 public class LigneDeProduction {
+    private int id;
     private String nom;
     private ArrayList<Machine> machines;
     private ArrayList<Operateur> operateurs;
@@ -25,6 +24,22 @@ public class LigneDeProduction {
         this.operateurs = new ArrayList<>();
         this.disponible = true;
     }
+    public LigneDeProduction(int id, String nom, boolean disponible) {
+        this.id = id;
+        this.nom = nom;
+        this.machines = new ArrayList<>();
+        this.operateurs = new ArrayList<>();
+        this.disponible = disponible;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public void ajouterMachine(Machine machine){
         this.machines.add(machine);
     }
@@ -74,4 +89,10 @@ public class LigneDeProduction {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "LigneDeProduction{" + "id=" + id + ", nom=" + nom + ", machines=" + machines + ", operateurs=" + operateurs + ", disponible=" + disponible + '}';
+    }
+    
 }

@@ -6,15 +6,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="565.0" style="-fx-border-color: F9E6E6;"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.DirecteurController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="565.0" style="-fx-border-color: F9E6E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.ChefController">
     <children>
          <ImageView fitHeight="409.0" fitWidth="574.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/Untitled.png" />
+            <Image url="@images/ChefInterface.png" />
          </image>
       </ImageView>
-      <Button layoutX="323.0" layoutY="105.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="209.0" text="Button1"  onAction="#handleButtonClick" />
-      <Button layoutX="319.0" layoutY="236.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="209.0" text="Button2" onAction="#handleGererOperateursButtonClick"/>
+      <Button fx:id="GestionLignes" onAction="#handleGererLignesButtonClick"  layoutX="323.0" layoutY="100.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="210.0" text="Button" />
+      <Button fx:id="GestionOrdres" onAction="#handleGererOrdresButtonClick"  layoutX="322.0" layoutY="248.0" mnemonicParsing="false" opacity="0.0" prefHeight="54.0" prefWidth="210.0" text="Button" />
       </children>
    <opaqueInsets>
       <Insets />

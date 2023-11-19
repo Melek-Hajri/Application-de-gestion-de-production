@@ -52,10 +52,10 @@ public class UpdateChefController implements Initializable {
 
     @FXML
     private TextField prixParHeure;
+    
     private Chef chef;
-    @FXML
-    private Button Sauvegarder;
-public Consumer<Chef> updateCallback; // Callback to notify the main controller of updates
+    
+    public Consumer<Chef> updateCallback; // Callback to notify the main controller of updates
 
  
     @Override

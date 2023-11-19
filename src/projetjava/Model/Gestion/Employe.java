@@ -44,6 +44,11 @@ public class Employe extends Salarie {
     tacheSupplementaire.faireTache();
 }
 
+    @Override
+    public String toString() {
+        return super.toString() + " taches=" + taches + ", salaire=" + salaire;
+    }
+
    
 
     

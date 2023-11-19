@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="566.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.MachinesController">
+    <stylesheets>
+        <URL value="@machines.css" />
+    </stylesheets>
+    <children>
+        <TableView fx:id="tableview" editable="true" layoutY="58.0" prefHeight="379.0" prefWidth="566.0" style="-fx-background-color: #FFA3BE;">
+            <columns>
+                <TableColumn fx:id="id" prefWidth="107.99996644258499" text="id" visible="true" />
+                <TableColumn id="nom" fx:id="nom" prefWidth="126.4000244140625" text="nom" visible="true" />
+                <TableColumn fx:id="type" prefWidth="172.00001525878906" text="type" />
+                <TableColumn id="enMaintenance" fx:id="enMaintenance" prefWidth="160.79998779296875" text="enMaintenance" visible="true" />
+            </columns>
+        </TableView>
+        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" onAction="#navigateToPrecedenteChefScene"  />
+        <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Machines de la ligne de production" wrappingWidth="413.3366584777832">
+           <font>
+              <Font size="20.0" />
+           </font>
+        </Text>
+    </children>
+</AnchorPane>

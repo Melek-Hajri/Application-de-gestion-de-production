@@ -52,5 +52,11 @@ public final class Operateur extends Employe {
         };
         return salaireCalcul.calculSalaire();
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "nbreHeures=" + nbreHeures + ", prixParHeure=" + prixParHeure + '}';
+    }
+    
 }
 

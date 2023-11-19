@@ -58,16 +58,16 @@ public class PlanDeProduction implements Planifiable{
     return index;
     }
     public List<LigneDeProduction> getLignesDisponibles() throws NoLignesDisponiblesException{
-    List<LigneDeProduction> lignesDisponibles = lignes.stream()
-            .filter(LigneDeProduction::getDisponible)
-            .collect(Collectors.toCollection(ArrayList::new));
+        List<LigneDeProduction> lignesDisponibles = lignes.stream()
+                .filter(LigneDeProduction::getDisponible)
+                .collect(Collectors.toCollection(ArrayList::new));
 
-    if (lignesDisponibles.isEmpty()) {
-        throw new NoLignesDisponiblesException("Pas de lignes disponibles trouvÃ©es!");
+        if (lignesDisponibles.isEmpty()) {
+            throw new NoLignesDisponiblesException("Pas de lignes disponibles trouvÃ©es!");
+        }
+
+        return lignesDisponibles;
     }
-
-    return lignesDisponibles;
-}
     @Override
     public void planifierProduction(OrdreDeProduction ordre) throws NoLignesDisponiblesException {
         int posLigneDispo = trouverLigneDisponible();

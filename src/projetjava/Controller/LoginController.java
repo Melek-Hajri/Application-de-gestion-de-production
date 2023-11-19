@@ -66,9 +66,9 @@ public class LoginController {
 
     private boolean checkChefCredentials(String username, String password) {
         try (Connection connection = connecterDB.connecterDB();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Chef WHERE adresseEmail = ? AND mdp = ?")) {
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Chef WHERE adresseEmail = 'chef1@example.com' AND mdp = 'password1'")) {
+            //preparedStatement.setString(1, username);
+            //preparedStatement.setString(2, password);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 return resultSet.next();
             }

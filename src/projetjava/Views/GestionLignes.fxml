@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="566.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.GestionLignesController">
+    <stylesheets>
+        <URL value="@gestionlignes.css" />
+    </stylesheets>
+    <children>
+        <TableView fx:id="tableview" editable="true" layoutY="58.0" prefHeight="379.0" prefWidth="566.0" style="-fx-background-color: #FFA3BE;">
+             <columns>
+                 <TableColumn fx:id="id" prefWidth="67.20001524686813" text="id" visible="true" />
+                 <TableColumn id="nom" fx:id="nom" prefWidth="128.800048828125" text="nom" visible="true" />
+                 <TableColumn id="disponible" fx:id="disponible" prefWidth="142.3999786376953" text="disponible" visible="true" />
+                 <TableColumn fx:id="Action" prefWidth="226.39996337890625" text="Action">
+
+                 </TableColumn>
+             </columns>
+        </TableView>
+        <Button fx:id="buttonAdd" layoutX="492.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToAjouterLigneScene" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToPrecedenteChefScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
+      <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des lignes de production" wrappingWidth="413.3366584777832">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
