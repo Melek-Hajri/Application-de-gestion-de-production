@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
     <stylesheets>
         <URL value="@interf2directeurgop.css" />
     </stylesheets>
@@ -28,8 +28,8 @@
             </TableColumn>
               </columns>
             </TableView>
-            <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Ajouter" onAction="#navigateToAjouterOperateurScene" />
-            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" onAction="#navigateToPrecedenteDircteurScene" />
+            <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" onAction="#navigateToAjouterOperateurScene" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" onAction="#navigateToPrecedenteDircteurScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
          </children>
       
 </AnchorPane>
