@@ -154,7 +154,9 @@ updateButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx
                 if (item == null || empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(new HBox(updateButton, deleteButton));
+                      HBox buttonsContainer = new HBox(updateButton, deleteButton);
+        buttonsContainer.setSpacing(10); // Réglez la valeur de l'espace ici (5 pixels dans cet exemple)
+        setGraphic(buttonsContainer);
                     
                 }
             }
