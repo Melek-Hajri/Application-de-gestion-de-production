@@ -23,8 +23,14 @@
                  </TableColumn>
              </columns>
         </TableView>
-        <Button fx:id="buttonAdd" layoutX="492.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToAjouterLigneScene" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
-        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToPrecedenteChefScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
+        <Button fx:id="buttonAdd" layoutX="492.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToAjouterLigneScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
+        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToPrecedenteChefScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
       <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des lignes de production" wrappingWidth="413.3366584777832">
          <font>
             <Font size="20.0" />

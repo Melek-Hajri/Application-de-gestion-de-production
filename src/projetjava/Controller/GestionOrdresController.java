@@ -136,6 +136,7 @@ private void addActionColumn() {
                     navigateToUpdateScene(ordre);
                     System.out.println("Update ordre: " + ordre);
                 });
+                updateButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
 
                 deleteButton.setOnAction(event -> {
                     OrdreDeProduction ordre = getTableView().getItems().get(getIndex());
@@ -150,11 +151,13 @@ private void addActionColumn() {
                         }
                     }
                 });
+                deleteButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
 //                machinesButton.setOnAction(event -> {
 //                    LigneDeProduction ligne = getTableView().getItems().get(getIndex());
 //                    navigateToMachineScene(ligne);
 //                    System.out.println("Machines de la ligne: " + ligne);
 //                });
+                lignesButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
             }
 
             @Override
@@ -163,7 +166,9 @@ private void addActionColumn() {
                 if (item == null || empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(new HBox(updateButton, deleteButton, lignesButton));
+                    HBox buttonsContainer = new HBox(updateButton, deleteButton, lignesButton);
+                    buttonsContainer.setSpacing(10); // Réglez la valeur de l'espace ici (5 pixels dans cet exemple)
+                    setGraphic(buttonsContainer);
                 }
             }
         });
