@@ -7,8 +7,12 @@ package projetjava.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +33,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import projetjava.Model.Gestion.Chef;
+import projetjava.Model.Gestion.Directeur;
+import projetjava.Model.Gestion.Employe;
 
 /**
  * FXML Controller class
@@ -61,6 +67,8 @@ public class INTERF1DirecteurController implements Initializable {
     private TableColumn<Chef,Chef> Action;
     @FXML
     private TableColumn<Chef,Double>salaire;
+    @FXML
+    private Button Retraite;
     
     public void setDirID(int DirID){
         this.dirID = DirID;
@@ -219,6 +227,7 @@ public class INTERF1DirecteurController implements Initializable {
         }
     }
     //***********bouton back***************
+     @FXML
     public void navigateToPrecedenteDircteurScene(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/Directeur.fxml"));
@@ -234,6 +243,41 @@ public class INTERF1DirecteurController implements Initializable {
             System.out.println("erreur en back");            // Handle exception appropriately (e.g., show an error message)
         }
     }
+    //****bouton retraite d affiche de filtre*********
+    @FXML
+private void showFilteredEmployeesInRetirementView() throws IOException {
+    try {
+        // Fetch all chefs from the database
+        List<Chef> allChefs = ChefDAO.getAllChefs();
+        System.out.println("interf1"+allChefs);
+
+        // Filter employees by retirement age
+        List<Chef> filteredEmployees = Directeur.filtrerEmployesParAgeRetraite(10, allChefs);
+        System.out.println("filteredEmployees"+filteredEmployees);
+
+        // Load the FXML file for the retirement employees scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/EmployeRetraite.fxml"));
+        loader.setControllerFactory(c->new EmployeRetraiteController(filteredEmployees));
+        Parent root = loader.load();
+
+        // Get the controller associated with the FXML file
+        EmployeRetraiteController retirementController = loader.getController();
+
+        // Pass the filtered employees to the RetirementEmployeesController
+        retirementController.setFilteredEmployees(filteredEmployees);
+
+        // Create a new scene and set it on the stage
+        Scene retirementScene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(retirementScene);
+        stage.setTitle("Retirement Employees");
+        stage.show();
+    } catch (SQLException e) {
+        // Handle the exception appropriately
+        e.printStackTrace();
+        System.out.println("Error navigating to the retirement employees scene: " + e.getMessage());
+    }
+}
 
 }
 

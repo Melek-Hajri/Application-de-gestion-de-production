@@ -69,4 +69,5 @@ return "Chef{" +
         };
         return salaireCalcul.calculSalaire();
     }
+    
 }

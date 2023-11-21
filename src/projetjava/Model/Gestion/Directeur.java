@@ -58,8 +58,8 @@ public class Directeur extends Salarie {
         this.mdp=mdp;
     }
 
-    public List<Employe> filtrerEmployesParAgeRetraite(int ageRetraite) {
-        return employes.stream()
+    public static List<Chef> filtrerEmployesParAgeRetraite(int ageRetraite,List<Chef> listes) {
+        return listes.stream()
                 .filter(e -> e.getAge() > ageRetraite)
                 .collect(Collectors.toList());
     }

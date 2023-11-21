@@ -49,6 +49,7 @@ public class DirecteurController  {
             primaryStage.setScene(scene);
 
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("erreur en affichage interface directeur ");
         }
     }
