@@ -48,7 +48,7 @@ public class ChefController {
     private void handleGererOrdresButtonClick(ActionEvent event) {
         try {
             // Load the FXML file of the interface for managing operators
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/Interf2DirecteurGop.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/Views/GestionOrdres.fxml"));
             Parent root = loader.load();
             // Create a new scene
             Scene scene = new Scene(root);
@@ -60,7 +60,7 @@ public class ChefController {
             primaryStage.setScene(scene);
         } catch (IOException e) {
             // Handle the exception appropriately
-            System.out.println("Error displaying the Manage Operators interface: " + e.getMessage());
+            System.out.println("Error displaying the Manage Ordres interface: " + e.getMessage());
         }
     }
   

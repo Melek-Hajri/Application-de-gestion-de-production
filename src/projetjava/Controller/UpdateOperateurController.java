@@ -48,7 +48,7 @@ public class UpdateOperateurController {
 
     @FXML
     private TextField prixParHeure;
-            
+           
    public Consumer<Operateur> updateCallback; // Callback to notify the main controller of updates
     private Operateur operateur;
 
@@ -120,5 +120,5 @@ public void handleUpdateButton() {
     public void setUpdateCallback(Consumer<Operateur> updateCallback) {
         this.updateCallback = updateCallback;
     }
-    
+   
 }

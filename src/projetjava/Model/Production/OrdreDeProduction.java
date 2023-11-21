@@ -63,6 +63,10 @@ public class OrdreDeProduction {
     public LigneDeProduction getLigne(){
         return ligne;
     }
+
+    public Object idProperty() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     
