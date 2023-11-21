@@ -11,11 +11,7 @@
         <URL value="@interf2directeurgop.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="944.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass">
-          <stylesheets>
-              <URL value="@interf1directeur.css" />
-          </stylesheets>
-         <children>
+      
             <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
               <columns>
                   <TableColumn fx:id="id" prefWidth="43.19998246431351" text="id" visible="true" />
@@ -35,6 +31,5 @@
             <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Ajouter" onAction="#navigateToAjouterOperateurScene" />
             <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" onAction="#navigateToPrecedenteDircteurScene" />
          </children>
-      </AnchorPane>
-   </children>
+      
 </AnchorPane>

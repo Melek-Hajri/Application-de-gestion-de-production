@@ -12,7 +12,7 @@
         <URL value="@interf1directeur.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
+      <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0">
         <columns>
             <TableColumn fx:id="id" prefWidth="43.19998246431351" text="id" visible="true" />
           <TableColumn id="nom" fx:id="nom" prefWidth="61.60000228881836" text="nom" visible="true" />
