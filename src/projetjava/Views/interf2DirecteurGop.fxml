@@ -5,8 +5,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="948.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.Interf2DirecteurGopController">
     <stylesheets>
         <URL value="@interf2directeurgop.css" />
     </stylesheets>
@@ -28,8 +29,14 @@
             </TableColumn>
               </columns>
             </TableView>
-            <Button fx:id="buttonAdd" layoutX="870.0" layoutY="434.0" mnemonicParsing="false" onAction="#navigateToAjouterOperateurScene" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
-            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" onAction="#navigateToPrecedenteDircteurScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
+            <Button fx:id="buttonAdd" layoutX="884.0" layoutY="426.0" mnemonicParsing="false" onAction="#navigateToAjouterOperateurScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="11.0" />
+         </font></Button>
+            <Button fx:id="ButtonBack" layoutX="8.0" layoutY="426.0" mnemonicParsing="false" onAction="#navigateToPrecedenteDircteurScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
          </children>
       
 </AnchorPane>
