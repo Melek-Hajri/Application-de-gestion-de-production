@@ -6,8 +6,6 @@ package projetjava.Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import projetjava.Model.Production.Exceptions.DateDebFinException;
 import projetjava.Model.Production.Exceptions.InvalidPrixException;
+import projetjava.Model.Production.Exceptions.NoLignesDisponiblesException;
 import projetjava.Model.Production.OrdreDeProduction;
 
 /**
@@ -42,7 +39,7 @@ import projetjava.Model.Production.OrdreDeProduction;
  *
  * @author hajri
  */
-public class GestionOrdresController implements Initializable {
+public class OrdresNonPlanifiesController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -50,11 +47,7 @@ public class GestionOrdresController implements Initializable {
     @FXML
     private TableColumn<OrdreDeProduction, OrdreDeProduction> Action;
 
-    @FXML
-    private Button ButtonBack;
 
-    @FXML
-    private Button buttonAdd;
 
     @FXML
     private TableColumn<OrdreDeProduction, String> dateDeb;
@@ -80,8 +73,6 @@ public class GestionOrdresController implements Initializable {
     @FXML
     private TableColumn<OrdreDeProduction, Double> prix;
     
-    @FXML
-    private TableColumn<OrdreDeProduction, ?> produit;
     
     @FXML
     private TableView<OrdreDeProduction> tableview;
@@ -94,9 +85,7 @@ public class GestionOrdresController implements Initializable {
         try {
             addActionColumn();
             loadLignes();
-        } catch (InvalidPrixException ex) {
-            Logger.getLogger(GestionOrdresController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DateDebFinException ex) {
+        } catch (InvalidPrixException | DateDebFinException ex) {
             Logger.getLogger(GestionOrdresController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -111,44 +100,28 @@ public class GestionOrdresController implements Initializable {
         dateFin.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateFin().toString()));
         planifie.setCellValueFactory(data -> new SimpleBooleanProperty(data.getValue().getLigne() != null));
 
-        // Implement action column cell factory here
         
-        // Set data to the TableView using OrdreDeProduction list
-        // For instance:
-        // List<OrdreDeProduction> ordres = OrdreDAO.getAllOrdres();
-        // tableview.setItems(FXCollections.observableArrayList(ordres));
     }
     
 private void addActionColumn() {
         Action.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         Action.setCellFactory(param -> new TableCell<>() {
-            private final Button updateButton = new Button("Update");
-            private final Button deleteButton = new Button("Delete");
+            private final Button planifierButton = new Button("Planifier");
 
             {
-                updateButton.setOnAction(event -> {
+                planifierButton.setOnAction(event -> {
                     OrdreDeProduction ordre = getTableView().getItems().get(getIndex());
-                    navigateToUpdateScene(ordre);
+                    try {
+                        PlanDAO.getPlan().planifierProduction(ordre);
+                        refreshTableData();
+                    } catch (NoLignesDisponiblesException ex) {
+                        Logger.getLogger(OrdresNonPlanifiesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     System.out.println("Update ordre: " + ordre);
                 });
-                updateButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
+                planifierButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
 
-                deleteButton.setOnAction(event -> {
-                    OrdreDeProduction ordre = getTableView().getItems().get(getIndex());
-                    boolean confirmed = showDeleteConfirmationDialog(ordre);
-                    if (confirmed) {
-                        try {
-                            OrdreDAO.deleteOrdreDeProduction(ordre.getNumero());
-                            System.out.println("Ordre deleted successfully.");
-                            refreshTableData();
-                        } catch (SQLException e) {
-                            System.out.println("Error deleting ordre: " + e.getMessage());
-                        }
-                    }
-                });
-                deleteButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
-
-                
+               
             }
 
             @Override
@@ -157,7 +130,7 @@ private void addActionColumn() {
                 if (item == null || empty) {
                     setGraphic(null);
                 } else {
-                    HBox buttonsContainer = new HBox(updateButton, deleteButton);
+                    HBox buttonsContainer = new HBox(planifierButton);
                     buttonsContainer.setSpacing(10); // Réglez la valeur de l'espace ici (5 pixels dans cet exemple)
                     setGraphic(buttonsContainer);
                 }
@@ -168,32 +141,14 @@ private void addActionColumn() {
 
     private void loadLignes() throws InvalidPrixException, DateDebFinException {
         try {
-            ordreList = FXCollections.observableArrayList(OrdreDAO.getAllOrdres());
+            ordreList = FXCollections.observableArrayList(PlanDAO.getPlan().getOrdresWithNullLigne());
             tableview.setItems(ordreList);
-        } catch (SQLException e) {
-            System.out.println("Error fetching lignes: " + e.getMessage());
+        } catch (NoLignesDisponiblesException ex) {
+            Logger.getLogger(OrdresNonPlanifiesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void navigateToUpdateScene(OrdreDeProduction ordre) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/UpdateOrdre.fxml"));
-            Parent root = loader.load();
 
-            UpdateOrdreController updateController = loader.getController();
-            updateController.setOrdre(ordre);
-            updateController.setOrdreController(this);
-            updateController.setUpdateCallback(this::handleOrdreUpdate);
-
-            Scene updateScene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(updateScene);
-            stage.setTitle("Update Ordre");
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error navigating to the update scene");
-        }
-    }
 
     public void refreshTableData() {
         try {
@@ -205,44 +160,27 @@ private void addActionColumn() {
         }
         tableview.refresh();
     }
-    private void handleOrdreUpdate(OrdreDeProduction ordre) {
-        refreshTableData();
-        System.out.println("");
-    }
-
-    private boolean showDeleteConfirmationDialog(OrdreDeProduction ordre) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Confirmation");
-        alert.setHeaderText("Delete Ligne");
-        alert.setContentText("Are you sure you want to delete ligne: " + ordre.getNumero() + "?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.orElse(ButtonType.CANCEL) == ButtonType.OK;
-    }
 
     @FXML
-    private void navigateToAjouterOrdreScene() {
+    private void navigateToLignesDisponiblesScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/AjoutOrdre.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/LignesDisponibles.fxml"));
             Parent root = loader.load();
-
-            AjoutOrdreController ajoutOrdreController = loader.getController();
-            ajoutOrdreController.setOrdreController(this);
 
             Scene ajoutScene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(ajoutScene);
-            stage.setTitle("Ajouter Ligne");
+            stage.setTitle("Lignes disponibles");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error navigating to the add scene");
+            System.out.println("Error navigating to the lignes disponibles scene");
         }
     }
     @FXML
-    public void navigateToPrecedenteChefScene(ActionEvent event) {
+    public void navigateToPrecedenteOrdresScene(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/Chef.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/GestionOrdres.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -254,20 +192,7 @@ private void addActionColumn() {
             System.out.println("Error going back");
         }
     }
-    @FXML
-    private void navigateToPlanifierScene(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/OrdresNonPlanifies.fxml"));
-            Parent root = loader.load();
 
-            Scene updateScene = new Scene(root);
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Set the new scene on the primary stage
-            primaryStage.setScene(updateScene);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error navigating to the planification scene");
-        }
-    }
 }
+    
+

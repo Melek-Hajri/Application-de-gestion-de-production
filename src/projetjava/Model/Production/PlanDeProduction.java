@@ -4,13 +4,16 @@
  */
 package projetjava.Model.Production;
 
-import projetjava.Model.Production.Exceptions.InvalidDeleteException;
+import java.sql.SQLException;
 import projetjava.Model.Production.Exceptions.NoLignesDisponiblesException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import projetjava.Controller.OrdreDAO;
 import projetjava.Model.Production.Exceptions.InvalidDeleteException;
 
 /**
@@ -33,6 +36,23 @@ public class PlanDeProduction implements Planifiable{
     public int getId(){
         return id;
     }
+
+    public List<LigneDeProduction> getLignes() {
+        return lignes;
+    }
+
+    public void setLignes(List<LigneDeProduction> lignes) {
+        this.lignes = lignes;
+    }
+
+    public List<OrdreDeProduction> getOrdres() {
+        return ordres;
+    }
+
+    public void setOrdres(List<OrdreDeProduction> ordres) {
+        this.ordres = ordres;
+    }
+    
     public void ajouterLigneDeProduction(LigneDeProduction ligne) {
         lignes.add(ligne);
     }
@@ -53,7 +73,7 @@ public class PlanDeProduction implements Planifiable{
     int index = IntStream.range(0, lignes.size())
             .filter(i -> lignes.get(i).getDisponible())
             .findFirst()
-            .orElseThrow(() -> new NoLignesDisponiblesException("No available production lines found."));
+            .orElseThrow(() -> new NoLignesDisponiblesException("Pas de lignes disponibles trouvées."));
 
     return index;
     }
@@ -63,16 +83,33 @@ public class PlanDeProduction implements Planifiable{
                 .collect(Collectors.toCollection(ArrayList::new));
 
         if (lignesDisponibles.isEmpty()) {
-            throw new NoLignesDisponiblesException("Pas de lignes disponibles trouvÃ©es!");
+            throw new NoLignesDisponiblesException("Pas de lignes disponibles trouvees!");
         }
 
         return lignesDisponibles;
+    }
+    public List<OrdreDeProduction> getOrdresWithNullLigne() throws NoLignesDisponiblesException {
+        List<OrdreDeProduction> ordreList = ordres.stream()
+                .filter(ordre -> ordre.getLigne() == null)
+                .collect(Collectors.toList());
+        
+        if (ordreList.isEmpty()) {
+            throw new NoLignesDisponiblesException("Pas d'ordres non planifies trouves!");
+        }
+        return ordreList;
     }
     @Override
     public void planifierProduction(OrdreDeProduction ordre) throws NoLignesDisponiblesException {
         int posLigneDispo = trouverLigneDisponible();
         ordre.setLigne(this.lignes.get(posLigneDispo));
-        this.lignes.get(posLigneDispo).setDisponible(false);
+        LigneDeProduction ligne = this.lignes.get(posLigneDispo);
+        ligne.setDisponible(false);
+        
+        try {
+            OrdreDAO.setLigneToOrdre(ligne.getId(), ordre.getNumero());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlanDeProduction.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void finirProduction(OrdreDeProduction ordre, StockMatierePremiere stockM, StockProduitsFinis stockF){
         Map<Matiere_premiere, Integer> composants = ordre.getProduit().getComposants();

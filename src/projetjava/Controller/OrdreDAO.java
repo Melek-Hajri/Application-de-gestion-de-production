@@ -106,6 +106,7 @@ public class OrdreDAO {
                 Produit produit = new Produit(nom, description, prix);
                 // Assuming you have a constructor for LigneDeProduction
                 OrdreDeProduction ordre = new OrdreDeProduction(numero, produit, quantite, dateDeb, dateFin);
+                ordre.setLigne(ligne);
                 ordres.add(ordre);
             }
         }
@@ -132,17 +133,17 @@ public class OrdreDAO {
              PreparedStatement statement = connection.prepareStatement(SET_LIGNE)) {
             statement.setInt(1, ligneId);
             statement.setInt(2, ordreId);
-            int dispo = setLigneDispo(ligneId, false);
+            setLigneDispo(ligneId, 0);
             return statement.executeUpdate();
         }
     }
-    public static int setLigneDispo(int ligneId, boolean dispo) throws SQLException{
+    public static void setLigneDispo(int ligneId, int dispo) throws SQLException{
         try (Connection connection = connecterDB.connecterDB();
              PreparedStatement statement = connection.prepareStatement(SET_LIGNE_DISPO)) {
-            statement.setInt(1, ligneId);
-            statement.setBoolean(2, dispo);
+            statement.setInt(1, dispo);
+            statement.setInt(2, ligneId);
             
-            return statement.executeUpdate();
+            statement.executeUpdate();
         }
     }
 }

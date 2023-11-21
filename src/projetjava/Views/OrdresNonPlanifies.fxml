@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="889.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.GestionOrdresController">
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="889.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.OrdresNonPlanifiesController">
     <stylesheets>
-        <URL value="@gestionordres.css" />
+        <URL value="@ordresnonplanifies.css" />
     </stylesheets>
     <children>
         <TableView fx:id="tableview" editable="true" layoutY="58.0" prefHeight="379.0" prefWidth="889.0" style="-fx-background-color: #FFA3BE;">
@@ -26,27 +26,22 @@
                  <TableColumn id="nom" fx:id="quantite" prefWidth="84.79998779296875" text="quantite" visible="true" />
             <TableColumn fx:id="dateDeb" prefWidth="133.5999755859375" text="dateDeb" />
                  <TableColumn id="disponible" fx:id="dateFin" prefWidth="94.4000244140625" text="dateFin" visible="true" />
-            <TableColumn fx:id="planifie" minWidth="0.0" prefWidth="54.40008544921875" text="planifié" />
-            <TableColumn fx:id="Action" prefWidth="207.20001220703125" text="Action" />
+            <TableColumn fx:id="planifie" minWidth="0.0" prefWidth="112.00006103515625" text="planifié" />
+            <TableColumn fx:id="Action" prefWidth="151.199951171875" text="Action" />
              </columns>
         </TableView>
-        <Button fx:id="buttonAdd" layoutX="816.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToAjouterOrdreScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Ajouter" textFill="WHITE">
+        <Button fx:id="lignesDispo" onAction="#navigateToLignesDisponiblesScene"  layoutX="743.0" layoutY="444.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: #474BCA;" text="Lignes Disponibles" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
-        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToPrecedenteChefScene" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Back" textFill="WHITE">
+        <Button fx:id="ButtonBack" onAction="#navigateToPrecedenteOrdresScene"  layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
-      <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des ordres de production" wrappingWidth="413.3366584777832">
+      <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordres de production non planifiés" wrappingWidth="413.3366584777832">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="Planifier" layoutX="723.0" layoutY="444.0" mnemonicParsing="false" onAction="#navigateToPlanifierScene" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #474BCA;" text="Planifier" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Button>
     </children>
 </AnchorPane>

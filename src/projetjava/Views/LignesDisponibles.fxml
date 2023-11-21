@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="483.0" prefWidth="566.0" style="-fx-background-color: #F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.LignesDisponiblesController">
+    <stylesheets>
+        <URL value="@lignesdisponibles.css" />
+    </stylesheets>
+    <children>
+        <TableView fx:id="tableview" editable="true" layoutY="58.0" prefHeight="379.0" prefWidth="566.0" style="-fx-background-color: #FFA3BE;">
+             <columns>
+                 <TableColumn fx:id="id" prefWidth="141.60000306367874" text="id" visible="true" />
+                 <TableColumn id="nom" fx:id="nom" prefWidth="236.00001525878906" text="nom" visible="true" />
+                 <TableColumn id="disponible" fx:id="disponible" prefWidth="188.800048828125" text="disponible" visible="true" />
+             </columns>
+        </TableView>
+        <Button fx:id="ButtonBack" onAction="#navigateToPrecedenteOrdreScene"  layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #474BCA;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
+      <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lignes de production disponibles" wrappingWidth="413.3366584777832">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>
