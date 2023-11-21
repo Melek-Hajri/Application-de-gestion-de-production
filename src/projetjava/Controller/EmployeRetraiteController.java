@@ -93,17 +93,10 @@ public class EmployeRetraiteController implements Initializable {
      //   refreshTableView();
     }
     //******Bouton back**********
-   @FXML
+  
     public void navigateToPrecedenteDircteurScene(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/projetjava/views/INTERF1Directeur.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            // Close the current window if needed
+           
              ((Node)(event.getSource())).getScene().getWindow().hide();
         } catch (Exception e) {
             System.out.println("erreur en back");            // Handle exception appropriately (e.g., show an error message)
