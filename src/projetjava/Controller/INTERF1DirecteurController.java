@@ -234,6 +234,7 @@ public class INTERF1DirecteurController implements Initializable {
             Parent root = loader.load();
 
             Stage stage = new Stage();
+            stage.setTitle("Directeur Dashboard");
             stage.setScene(new Scene(root));
             stage.show();
 

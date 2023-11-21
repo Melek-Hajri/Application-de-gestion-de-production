@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.EmployeRetraiteController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="944.0" style="-fx-background-color: F9E6E6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetjava.Controller.EmployeRetraiteController">
     <stylesheets>
         <URL value="@employeretraite.css" />
     </stylesheets>
    <children>
     
-            <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="379.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
+            <TableView fx:id="tableview" editable="true" layoutY="37.0" prefHeight="343.0" prefWidth="944.0" style="-fx-background-color: #FFA3BE;">
               <columns>
                   <TableColumn fx:id="id" prefWidth="43.19998246431351" text="id" visible="true" />
                 <TableColumn id="nom" fx:id="nom" prefWidth="61.60000228881836" text="nom" visible="true" />
@@ -26,6 +26,6 @@
                   <TableColumn fx:id="salaire" prefWidth="236.6666259765625" text="salaire" />
               </columns>
             </TableView>
-            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" onAction="#navigateToPrecedenteDircteurScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
+            <Button fx:id="ButtonBack" layoutX="14.0" layoutY="390.0" mnemonicParsing="false" onAction="#navigateToPrecedenteDircteurScene" prefHeight="25.0" prefWidth="60.0" text="Back" />
          </children>
       </AnchorPane>

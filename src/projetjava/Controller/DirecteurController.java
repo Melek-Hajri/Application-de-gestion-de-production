@@ -44,6 +44,7 @@ public class DirecteurController  {
 
             // Obtenir la fenêtre principale
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setTitle("Gestion des Chefs ");
 
             // Définir la nouvelle scène sur la fenêtre principale
             primaryStage.setScene(scene);
@@ -66,6 +67,8 @@ public class DirecteurController  {
 
             // Get the primary stage
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setTitle("Gestion des Operateurs ");
+
 
             // Set the new scene on the primary stage
             primaryStage.setScene(scene);

@@ -263,6 +263,7 @@ public class Interf2DirecteurGopController implements Initializable {
             Parent root = loader.load();
 
             Stage stage = new Stage();
+            stage.setTitle("Directeur Dashboard");
             stage.setScene(new Scene(root));
             stage.show();
 
