@@ -31,7 +31,7 @@
              </columns>
         </TableView>
         <Button fx:id="buttonAdd" layoutX="816.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Ajouter" onAction="#navigateToAjouterOrdreScene"  />
-        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" />
+        <Button fx:id="ButtonBack" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Back" onAction="#navigateToPrecedenteChefScene" />
       <Text layoutX="10.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des ordres de production" wrappingWidth="413.3366584777832">
          <font>
             <Font size="20.0" />
