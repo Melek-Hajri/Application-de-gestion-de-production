@@ -122,10 +122,9 @@ public class INTERF1DirecteurController implements Initializable {
                     navigateToUpdateScene(chef);
                     System.out.println("Update chef: " + chef);
                 });
-
+updateButton.setStyle("-fx-background-color: #474BCA; -fx-text-fill: #ffffff;-fx-font-style: italic; -fx-font-weight: bold;");
                 deleteButton.setOnAction(event -> {
                     Chef chef = getTableView().getItems().get(getIndex());
-
                     // Show a confirmation dialog before deleting
                     boolean confirmed = showDeleteConfirmationDialog(chef);
 
@@ -145,6 +144,8 @@ public class INTERF1DirecteurController implements Initializable {
                         }
                     }
                 });
+                deleteButton.setStyle("-fx-background-color: #474BCA;-fx-text-fill: #ffffff; -fx-font-style: italic; -fx-font-weight: bold;");
+
             }
 
             @Override
@@ -154,6 +155,7 @@ public class INTERF1DirecteurController implements Initializable {
                     setGraphic(null);
                 } else {
                     setGraphic(new HBox(updateButton, deleteButton));
+                    
                 }
             }
         });
