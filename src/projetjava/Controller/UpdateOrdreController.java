@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -105,52 +106,108 @@ public class UpdateOrdreController implements Initializable {
         this.ordreController = ordreController;
     }
     
-    @FXML
-public void handleUpdateButton() {
-    try {
-        // Get the updated values from the TextFields
-        int updatedId = Integer.parseInt(id.getText());
-        String updatedNom = nom.getText();
-        String updatedDescription = description.getText();
-        double updatedPrix = Double.parseDouble(prix.getText());
-        int updatedQuantite = Integer.parseInt(quantite.getText());
-        int updatedJourd = jourd.getValue();
-        int updatedMoisd = moisd.getValue();
-        int updatedAnneed = anneed.getValue();
-        int updatedJourf = jourf.getValue();
-        int updatedMoisf = moisf.getValue();
-        int updatedAnneef = anneef.getValue();
-        
-        Date updatedDateDeb = new Date(updatedJourd, updatedMoisd, updatedAnneed);
-        Date updatedDateFin = new Date(updatedJourf, updatedMoisf, updatedAnneef);
-        
-        Produit updatedProduit = new Produit(updatedNom, updatedDescription, updatedPrix);
-        
-        OrdreDeProduction updatedOrdre = new OrdreDeProduction(updatedId, updatedProduit, updatedQuantite, updatedDateDeb, updatedDateFin);
-        
-        try {
-            int rowsUpdated = OrdreDAO.updateOrdreDeProduction(updatedOrdre);
-            
-            if (rowsUpdated > 0) {
-                System.out.println("Ordre updated successfully.");
-                ordreController.refreshTableData();
-            } else {
-                System.out.println("Failed to update Ordre.");
+    
+    
+    private boolean isInputValid() {
+
+        String errorMessage = "";
+        if (id.getText() == null || id.getText().length() == 0) {
+            errorMessage += "Id non valide\n"; } else {
+            try { Integer.parseInt(id.getText()); }
+            catch (NumberFormatException e) { errorMessage += "Id doit etre un entier\n"; } 
+        }
+        if (nom.getText() == null || nom.getText().length() == 0) {
+            errorMessage += "Nom non valide\n"; }
+        if (description.getText() == null || description.getText().length() == 0) {
+            errorMessage += "Description non valide\n"; } 
+        if (quantite.getText() == null || quantite.getText().length() == 0) {
+            errorMessage += "Quantite non valide\n"; } else {
+            try { Integer.parseInt(quantite.getText()); }
+            catch (NumberFormatException e) { errorMessage += "Quantite doit etre un entier\n"; } 
+        }
+        if (prix.getText() == null || prix.getText().length() == 0) {
+            errorMessage += "Prix non valide\n"; } else {
+            try { Double.parseDouble(prix.getText()); }
+            catch (NumberFormatException e) { errorMessage += "Prix doit etre un reel\n"; } 
+        }
+        Integer jourdValue = jourd.getValue();
+        Integer moisdValue = moisd.getValue();
+        Integer anneedValue = anneed.getValue();
+        Integer jourfValue = jourf.getValue();
+        Integer moisfValue = moisf.getValue();
+        Integer anneefValue = anneef.getValue();
+        int dd = 0;
+        int df = 0;
+        if (jourdValue == null || moisdValue == null || anneedValue == null ){
+            errorMessage += "Date debut non valide\n";} else {
+            dd = anneedValue*10000 + moisdValue*100 + jourdValue;
+        }
+        if (jourfValue == null || moisfValue == null || anneefValue == null ){
+            errorMessage += "Date fin non valide\n";} else {
+            df = anneefValue*10000 + moisfValue*100 + jourfValue;
+        }
+        if(dd > 0 && df > 0){
+            if (df < dd) {
+                errorMessage += "Date fin doit etre superieure a la date debut\n";
             }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("erreur handleUpdateButton");
         }
-        
-        // Close the update scene
-        nom.getScene().getWindow().hide();
-    } catch (InvalidPrixException ex) {
-            Logger.getLogger(UpdateOrdreController.class.getName()).log(Level.SEVERE, null, ex);
-    }   catch (DateDebFinException ex) {
-            Logger.getLogger(UpdateOrdreController.class.getName()).log(Level.SEVERE, null, ex);
+        if (errorMessage.length() == 0) { return true; } else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("champs invalides");
+        alert.setHeaderText("svp corrigez les champs invalides");
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+        return false; } }
+    
+    
+    @FXML
+    public void handleUpdateButton() {
+        if(isInputValid()){
+            try {
+                // Get the updated values from the TextFields
+                int updatedId = Integer.parseInt(id.getText());
+                String updatedNom = nom.getText();
+                String updatedDescription = description.getText();
+                double updatedPrix = Double.parseDouble(prix.getText());
+                int updatedQuantite = Integer.parseInt(quantite.getText());
+                int updatedJourd = jourd.getValue();
+                int updatedMoisd = moisd.getValue();
+                int updatedAnneed = anneed.getValue();
+                int updatedJourf = jourf.getValue();
+                int updatedMoisf = moisf.getValue();
+                int updatedAnneef = anneef.getValue();
+
+                Date updatedDateDeb = new Date(updatedJourd, updatedMoisd, updatedAnneed);
+                Date updatedDateFin = new Date(updatedJourf, updatedMoisf, updatedAnneef);
+
+                Produit updatedProduit = new Produit(updatedNom, updatedDescription, updatedPrix);
+
+                OrdreDeProduction updatedOrdre = new OrdreDeProduction(updatedId, updatedProduit, updatedQuantite, updatedDateDeb, updatedDateFin);
+
+                try {
+                    int rowsUpdated = OrdreDAO.updateOrdreDeProduction(updatedOrdre);
+
+                    if (rowsUpdated > 0) {
+                        System.out.println("Ordre updated successfully.");
+                        ordreController.refreshTableData();
+                    } else {
+                        System.out.println("Failed to update Ordre.");
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("erreur handleUpdateButton");
+                }
+
+                // Close the update scene
+                nom.getScene().getWindow().hide();
+            } catch (InvalidPrixException ex) {
+                    Logger.getLogger(UpdateOrdreController.class.getName()).log(Level.SEVERE, null, ex);
+            }   catch (DateDebFinException ex) {
+                    Logger.getLogger(UpdateOrdreController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-}
+    }
 
     public void setUpdateCallback(Consumer<OrdreDeProduction> updateCallback) {
         this.updateCallback = updateCallback;
