@@ -8,7 +8,7 @@ package projetjava.Model.Gestion;
  *
  * @author admin
  */
-public class client extends Personne implements validationCommande {
+public final class client extends Personne implements validationCommande {
     double budget;
     public client(String nom, String tel,double budget) {
         super(nom, tel);

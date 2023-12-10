@@ -8,7 +8,7 @@ package projetjava.Model.Gestion;
  *
  * @author hajri
  */
-public class Fournisseur extends Personne {
+public final class Fournisseur extends Personne {
     private String societe;
     public Fournisseur(String nom, String tel, String societe){
         super(nom, tel);

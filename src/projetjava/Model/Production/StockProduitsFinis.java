@@ -9,7 +9,7 @@ package projetjava.Model.Production;
  * @author admin
  */
 import java.util.*;
-public class StockProduitsFinis extends Stock{
+public final class StockProduitsFinis extends Stock{
     private Map<Produit, Double> produitsFinis;
 
     public StockProduitsFinis(String nomStock,double capaciteMaximale) {

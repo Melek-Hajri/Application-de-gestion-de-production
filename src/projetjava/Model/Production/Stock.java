@@ -8,7 +8,7 @@ package projetjava.Model.Production;
  *
  * @author admin
  */
-public class Stock {
+public sealed class Stock permits StockMatierePremiere, StockProduitsFinis{
     private String nomStock;
     private double capaciteMaximale;
     public Stock(String nomStock,double capaciteMaximale){

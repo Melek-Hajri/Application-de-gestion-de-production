@@ -10,7 +10,7 @@ package projetjava.Model.Gestion;
  */
 import java.util.*;
 import java.lang.String;
-public class Employe extends Salarie {
+public sealed class Employe extends Salarie permits Chef, Operateur {
      List<String> taches;
      private double salaire;
 

@@ -9,7 +9,7 @@ package projetjava.Model.Gestion;
  *
  * @author admin
  */
-public class Salarie implements calculsalaire {
+public sealed class Salarie implements calculsalaire permits Directeur, Employe {
     String nom;
     String prenom; // Ajout de l'attribut prénom
   String id; // Ajout de l'attribut ID

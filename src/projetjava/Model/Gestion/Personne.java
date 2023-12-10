@@ -8,7 +8,7 @@ package projetjava.Model.Gestion;
  *
  * @author hajri
  */
-public class Personne {
+public sealed class Personne permits Fournisseur, client {
     private String nom; 
     private String tel; 
 

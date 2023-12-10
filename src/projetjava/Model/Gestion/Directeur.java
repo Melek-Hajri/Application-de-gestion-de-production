@@ -12,7 +12,7 @@ import java.util.*;
 import java.lang.String;
 import java.util.stream.Collectors;
 
-public class Directeur extends Salarie {
+public final class Directeur extends Salarie {
      Set<String> subordonnes;// directeurs adjoints ou les superviseurs de département
      double prime;
      List<Employe> employes;

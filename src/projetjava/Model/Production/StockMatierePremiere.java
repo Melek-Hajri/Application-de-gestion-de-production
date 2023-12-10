@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author admin
  */
-public class StockMatierePremiere extends Stock{
+public final class StockMatierePremiere extends Stock{
     private Map<Matiere_premiere, Double> matieresPremieres;
 
     public StockMatierePremiere(String nomStock,double capaciteMaximale) {
